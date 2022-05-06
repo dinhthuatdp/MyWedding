@@ -527,6 +527,7 @@
     .love-story-divide,
     .love-story-img {
         width: 100%;
+        align-items: center;
     }
 
     .love-story-item {
@@ -567,5 +568,12 @@
 
     .love-story-box img {
         min-width: none;
+        min-width: 300px;
+    }
+
+    .love-story-box {
+        min-width: 300px;
+        padding: 10px;
+        width: auto;
     }
 }
