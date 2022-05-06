@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wedding</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script|Dancing+Script:wght@400;500;700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="slideshow.css">
+    <script src="myjs.js"></script>
+    <style>
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+ 
+#myImg:hover {opacity: 0.7;}
+ 
+/* định dạng phần nền của modal */
+.modal {
+    display: none; /* mặc định được ẩn đi */
+    position: fixed; /* vị trí được cố định */
+    z-index: 1; /* ưu tiên hiển thị đầu tiên */
+    /* padding-top: 100px;  */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+ 
+/* Phần nội hình ảnh của modal */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+ 
+/* phần caption của modal image */
+#caption1 {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+ 
+/* Hiệu ứng chuyển động*/
+.modal-content, #caption1 {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+ 
+/* Button đóng Modal */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+ 
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+.img-slider-active {
+    opacity: 1;
+}
+.img-slider-unactive {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 896px) {
+    .modal-content {
+    width: 100%;
+    padding-top: 10px; 
+}
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <span class="close">&times;</span>
+          <img loading="lazy" class="modal-content" id="img01">
+        </div>
+      </div>
+    <div class="bar-preview">
+    </div>
+    <div class="view-page">
+        <div class="sections">
+            <section class="section-item section-info">
+                <div class="info-content">
+                    <div class="info-box">
+                        <div class="info-item">
+                            <p class="info-title">Lễ cưới của cặp đôi</p>
+                            <img loading="lazy" src="images/photo-013.png"
+                                class="value_show src_image">
+                            <div class="info-item-name">
+                                <p>ĐÌNH THUẬT</p>
+                                <p>&</p>
+                                <p>TRÀ MI</p>
+                            </div>
+                            <p class="info-date">SAVE THE DATE</p>
+                            <p class="info-date">07.09.2022</p>
+                            <p class="info-date">(12.08.2022 Âm Lịch)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section-item section-our-story">
+                <div class="our-story-title text-title">
+                    <h2>Chuyện chúng mình</h2>
+                </div>
+                <img loading="lazy" src="images/photo-012.png" alt="">
+                <div class="text-content">
+                    <p>"Tình yêu như một món quà của cuộc sống và đôi khi nó đến cũng thật bất ngờ..."</p>
+                    <p>Tình yêu của chúng mình í hả? chả học chung, chả quen biết vậy mà đã gặp nhau ở cái tuổi 19 và ngày hôm nay chúng mình đã chuẩn bị về chung một nhà.</p>
+                </div>
+                <div class="our-story-characters">
+                    <div class="our-story-character">
+                        <img loading="lazy" onclick="openImage(this)" src="images/imgThuat1.JPG" alt="">
+                        <p class="text-title character-name">ĐÌNH THUẬT</p>
+                        <p class="text-content">“Ngoài kia nếu có khó khăn quá, về nhà em nhé, có anh chờ “</p>
+                    </div>
+                    <div class="our-story-character">
+                        <img loading="lazy" onclick="openImage(this)" src="images/imgMi1.JPG" alt="">
+                        <p class="text-title character-name">TRÀ MI</p>
+                        <p class="text-content">“Ngoài kia nếu có khó khăn quá, về nhà anh nhé, có em chờ “</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section-item section-count-down">
+                <p class="text-title">Đếm ngược thời gian</p>
+                <img loading="lazy" src="images/photo-013.png" alt="">
+                <div class="text-content">
+                    <p>Hãy cùng nhau viết tiếp câu chuyện ...</p>
+                    <p>07.09.2022</p>
+                    <p>(12.08.2022 Âm Lịch)</p>
+                </div>
+                <div class="count-down-item">
+                    <div class="count-down-time">
+                        <p id="countdownDays" class="count-down-number">00</p>
+                        <p class="count-down-text">NGÀY</p>
+                    </div>
+                    <div class="count-down-time">
+                        <p id="countdownHours" class="count-down-number">00</p>
+                        <p class="count-down-text">GIỜ</p>
+                    </div>
+                    <div class="count-down-time">
+                        <p id="countdownMinutes" class="count-down-number">00</p>
+                        <p class="count-down-text">PHÚT</p>
+                    </div>
+                    <div class="count-down-time">
+                        <p id="countdownSeconds" class="count-down-number">00</p>
+                        <p class="count-down-text">GIÂY</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section-item section-love-story">
+                <p class="text-title">Câu chuyện tình yêu</p>
+                <img loading="lazy" src="images/photo-012.png" alt="">
+                <div class="text-content">
+                    <p>Gặp đúng người, vào đúng thời điểm, đó chính là BÌNH YÊN</p>
+                </div>
+                <div class="love-story-item">
+                    <div class="love-story-desc">
+                        <p class="text-header">Chúng tôi gặp nhau</p>
+                        <!-- <p class="text-date">18/01/2019</p> -->
+                        <div class="text-content">
+                            <p>Không nhớ nữa vì khi đó không chắc là của nhau.</p>
+                        </div>
+                    </div>
+                    <div class="love-story-divide">
+                        <img loading="lazy" src="images/photo-005.png" alt="">
+                        <img loading="lazy" src="images/photo-007.png" alt="">
+                        <div class="divide-box">
+                            20xx
+                        </div>
+                    </div>
+                    <div class="love-story-img">
+                        <div class="love-story-box">
+                            <img loading="lazy" onclick="openImage(this)" src="images/img3.JPG"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="love-story-item love-story-item-reverse">
+                    <div class="love-story-desc">
+                        <p class="text-header">Ngày đầu tiên</p>
+                        <!-- <p class="text-date">18/01/2019</p> -->
+                        <div class="text-content">
+                            <p>Qua đêm nay sóng gió sẽ về với mây ngàn<br>
+                                Dậy đi yêu thương, ta hãy khép mi nỗi buồn.<br>
+                                <br>
+                                Sâu thẳm trong mắt em là ánh mắt của anh<br>
+                                Nhìn em âu yếm những rung động trái tim...yếu mềm.</p>
+                        </div>
+                    </div>
+                    <div class="love-story-divide love-story-divide-middle">
+                        <img loading="lazy" src="images/photo-005.png" alt="">
+                        <img loading="lazy" src="images/photo-007.png" alt="">
+                        <div class="divide-box">
+                            20xx
+                        </div>
+                    </div>
+                    <div class="love-story-img">
+                        <div class="love-story-box">
+                            <img loading="lazy" onclick="openImage(this)" src="images/img4.JPG"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="love-story-item">
+                    <div class="love-story-desc">
+                        <p class="text-header">Kỷ niệm đáng nhớ</p>
+                        <!-- <p class="text-date">18/01/2019</p> -->
+                        <div class="text-content">
+                            <p>Thực ra là hồi đó chúng tôi chưa có ảnh chụp chung với nhau.</p>
+                            <p>Một phần là vì ngại, một phần là vì lừa mãi mới được. Nào có đàng hoàng như người ta tán cái yêu luôn đâu.</p>
+                            <p>Đây là bức ảnh ở Pao's Sapa, Lần đầu tiên đi chơi xa với nhau.</p>
+                        </div>
+                    </div>
+                    <div class="love-story-divide love-story-divide-middle">
+                        <img loading="lazy" src="images/photo-005.png" alt="">
+                        <img loading="lazy" src="images/photo-007.png" alt="">
+                        <div class="divide-box">
+                            20xx
+                        </div>
+                    </div>
+                    <div class="love-story-img">
+                        <div class="love-story-box">
+                            <img loading="lazy" onclick="openImage(this)" src="images/img5.JPG"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="love-story-item love-story-item-reverse">
+                    <div class="love-story-desc">
+                        <p class="text-header">Giây phút trọn vẹn</p>
+                        <!-- <p class="text-date">07.09.2022 (12.08.2022 ÂL)</p> -->
+                        <div class="text-content">
+                            <p>Khi 2 ta chung 1 nhà.</p>
+                        </div>
+                    </div>
+                    <div class="love-story-divide love-story-divide-middle">
+                        <img loading="lazy" src="images/photo-005.png" alt="">
+                        <img loading="lazy" src="images/photo-007.png" alt="">
+                        <div class="divide-box">
+                            2022
+                        </div>
+                    </div>
+                    <div class="love-story-img">
+                        <div class="love-story-box">
+                            <img loading="lazy" onclick="openImage(this)" src="images/img6.JPG"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="love-story-item">
+                    <div class="love-story-desc">
+
+                    </div>
+                    <div class="love-story-divide-love">
+                        <img loading="lazy" src="images/photo-007.png" alt="">
+                        <div class="love-story-love">
+                            <img loading="lazy" src="images/photo-006.png" alt="">
+                        </div>
+                    </div>
+                    <div class="love-story-img">
+                    </div>
+                </div>
+            </section>
+            <section class="section-item section-family-of-two">
+
+            </section>
+            <section class="section-item section-organizing-points">
+                <p class="text-title text-shadow">Địa điểm tổ chức</p>
+                <img loading="lazy" src="images/photo-013.png" alt="">
+                <div class="text-content">
+                    <p></p>
+                </div>
+                <div class="organizing-content">
+                    <div class="organizing-content-img">
+                        <img loading="lazy" src="images/img16.JPG" alt="">
+                    </div>
+                    <p class="organizing-header">TIỆC CƯỚI</p>
+                    <p>Tại Tư Gia.</p>
+                    <p class="wedding-address">Thứ 4, ngày 07.09.2022.</p>
+                    <p>(12.08.2022 Âm Lịch)</p>
+                    <p class="wedding-address">Mỹ Trang, Phổ Cường, Đức Phổ, Quảng Ngãi, Việt Nam</p>
+                </div>
+            </section>
+            <section class="section-item section-albums-wedding">
+                <p class="text-title">Album ảnh cưới</p>
+                <img loading="lazy" src="images/photo-012.png" alt="">
+                <div class="text-content">
+                    <p>Dưới đây mình xin chia sẻ một số hình ảnh trong Album ảnh cưới của hai Vợ Chồng.</p>
+                    <p>Hi vọng sau này cảm xúc của hai đứa cũng trọn vẹn khi nhìn lại Album hình cưới.</p>
+                </div>
+                <div class="slide-show">
+                    <div id="albumWedding" class="container">
+                        <div id="albumWeddingMySlide" class="mySlides">
+                          <img  loading="lazy" id="albumWeddingImgShow" onclick="openImage(this)" src="images/img9.JPG" style="width:100%">
+                        </div>
+                          
+                        <a class="prev" onclick="plusSlides(-1)">❮</a>
+                        <a class="next" onclick="plusSlides(1)">❯</a>
+                      
+                        <div id="albumWeddingRow" class="row">
+                          <div id="albumWeddingItem" class="column">
+                            <img  loading="lazy" id="albumWeddingImgItem" class="albumWeddingImgItemCls demo cursor" src="images/img9.JPG" style="width:100%" alt="My Wedding">
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </section>
+            <!--Lễ đính hôn-->
+            <section class="section-item section-engagement-party">
+                <p class="text-title text-shadow">Album hỏi cưới</p>
+                <img loading="lazy" src="images/photo-012.png" alt="">
+                <div class="text-content">
+                    <p>Dưới đây mình xin chia sẻ một số hình ảnh trong Album ngày đám hỏi của hai Vợ Chồng.</p>
+                </div>
+                <div class="slide-show">
+                    <div id="albumEngagementParty" class="container">
+                        <div id="albumEngagementPartyMySlide" class="mySlides1">
+                          <img  loading="lazy" id="albumEngagementPartyImgShow" onclick="openImage(this)" src="images/img10.JPG" style="width:100%">
+                        </div>
+                          
+                        <a class="prev" onclick="plusSlides(-1)">❮</a>
+                        <a class="next" onclick="plusSlides(1)">❯</a>
+                      
+                        <div id="albumEngagementPartyRow" class="row">
+                          <div id="albumEngagementPartyItem" class="column">
+                            <img  loading="lazy" id="albumEngagementPartyImgItem" class="albumEngagementPartyImgItemCls demo cursor" src="images/img10.JPG" style="width:100%" alt="My Engagement Party">
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <!-- <p class="text-title">Album Lễ đính hôn</p>
+                <img src="images/photo-013.png" alt="">
+                <div class="text-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="slide-show1">
+                    <div id="albumEngagementParty" class="container">
+                        <div id="albumEngagementPartySlide" class="mySlides1">
+                            <img id="albumEngagementPartyImgShow" src="images/img9.JPG" style="width:100%">
+                            <img id="albumEngagementPartyImgShow" src="images/img11.JPG" style="width:100%">
+                        </div>
+                          
+                        <a class="prev" onclick="plusSlides(-1)">❮</a>
+                        <a class="next" onclick="plusSlides(1)">❯</a>
+                      
+                        <div class="row">
+                          <div class="column">
+                            <img class="demo cursor" src="images/img9.JPG" style="width:100%" onclick="currentSlide(1)" alt="My engagement party">
+                            <img class="demo cursor" src="images/img11.JPG" style="width:100%" onclick="currentSlide(1)" alt="My engagement party">
+                          </div>
+                        </div>
+                      </div>
+                </div> -->
+            </section>
+        </div>
+    </div>
+    <script>
+        let slideIndex = 1;
+        getAlbumsWedding();
+        getAlbumsEngagementParty();
+
+        // Slide show
+        showSlides(slideIndex, "mySlides");
+        // Slide show
+        showSlides(slideIndex, "mySlides1");
+
+        function getAlbumsWedding() {
+      var listImgs = [
+        "images/AlbumWedding/img1.jpg",
+        "images/AlbumWedding/img2.jpg",
+        "images/AlbumWedding/img3.jpg",
+        "images/AlbumWedding/img4.jpg",
+        "images/AlbumWedding/img5.jpg",
+        "images/AlbumWedding/img6.jpg",
+        "images/AlbumWedding/img7.jpg",
+        "images/AlbumWedding/img8.jpg",
+        "images/AlbumWedding/img9.jpg",
+        "images/AlbumWedding/img10.jpg",
+        "images/AlbumWedding/img11.jpg",
+        "images/AlbumWedding/img12.jpg",
+        "images/AlbumWedding/img13.jpg",
+        "images/AlbumWedding/img14.jpg",
+        "images/AlbumWedding/img15.jpg",
+        "images/AlbumWedding/img16.jpg",
+        "images/AlbumWedding/img17.jpg",
+        "images/AlbumWedding/img18.jpg",
+        "images/AlbumWedding/img19.jpg",
+        "images/AlbumWedding/img20.jpg",
+        "images/AlbumWedding/img21.jpg",
+        "images/AlbumWedding/img22.jpg",
+        "images/AlbumWedding/img23.jpg",
+        "images/AlbumWedding/img24.jpg",
+        "images/AlbumWedding/img25.jpg",
+        "images/AlbumWedding/img26.jpg",
+        "images/AlbumWedding/img27.jpg",
+        "images/AlbumWedding/img28.jpg",
+        "images/AlbumWedding/img29.jpg",
+        "images/AlbumWedding/img30.jpg",
+        "images/AlbumWedding/img31.jpg",
+        "images/AlbumWedding/img32.jpg",
+        "images/AlbumWedding/img33.jpg",
+        "images/AlbumWedding/img34.jpg",
+        "images/AlbumWedding/img35.jpg",
+        "images/AlbumWedding/img36.jpg",
+        "images/AlbumWedding/img37.jpg",
+        "images/AlbumWedding/img38.jpg",
+        "images/AlbumWedding/img39.jpg",
+        "images/AlbumWedding/img40.jpg",
+        "images/AlbumWedding/img41.jpg",
+        "images/AlbumWedding/img42.jpg",
+        "images/AlbumWedding/img43.jpg",
+        "images/AlbumWedding/img44.jpg"
+      ];
+      var albumWedding = document.getElementById("albumWedding");
+      var albumWeddingRow = document.getElementById("albumWeddingRow");
+      var index = listImgs.length + 1;
+      listImgs.forEach(element => {
+        index--;
+        var albumWeddingMySlide = document.getElementById("albumWeddingMySlide");
+        if (albumWeddingMySlide) {
+            var albumWeddingMyImg = albumWeddingMySlide.childNodes[1];
+            if (albumWeddingMyImg) {
+                albumWeddingMyImg.src = element;
+            }
+            // albumWeddingMyImg.setAttribute("imgIndex", index);
+            var clone1 = albumWeddingMySlide.cloneNode(true);
+            albumWedding.prepend(clone1);
+        }
+
+
+        var albumWeddingItem = document.getElementById("albumWeddingItem");
+        if (albumWeddingItem) {
+            var albumWeddingImgItem = albumWeddingItem.childNodes[1];
+            if (albumWeddingImgItem) {
+                albumWeddingImgItem.src = element;
+            }
+            albumWeddingImgItem.setAttribute("imgIndex", index);
+            var clone = albumWeddingItem.cloneNode(true);
+            clone.onclick = function(event) {
+                currentSlide(clone.childNodes[1].getAttribute("imgindex"), clone);
+            }
+            albumWeddingRow.prepend(clone);
+        }
+      });
+      albumWeddingRow.firstElementChild.remove();
+      albumWedding.firstElementChild.remove();
+  }
+        function getAlbumsEngagementParty() {
+      var listImgs = [
+        "images/EngagementParty/img1.jpg",
+        "images/EngagementParty/img2.jpg",
+        "images/EngagementParty/img3.jpg",
+        "images/EngagementParty/img4.jpg",
+        "images/EngagementParty/img5.jpg",
+        "images/EngagementParty/img6.jpg",
+        "images/EngagementParty/img7.jpg",
+        "images/EngagementParty/img8.jpg",
+        "images/EngagementParty/img9.jpg",
+        "images/EngagementParty/img10.jpg",
+        "images/EngagementParty/img11.jpg",
+        "images/EngagementParty/img12.jpg",
+        "images/EngagementParty/img13.jpg",
+        "images/EngagementParty/img14.jpg",
+        "images/EngagementParty/img15.jpg",
+        "images/EngagementParty/img16.jpg",
+        "images/EngagementParty/img17.jpg",
+        "images/EngagementParty/img18.jpg",
+        "images/EngagementParty/img19.jpg",
+        "images/EngagementParty/img20.jpg",
+        "images/EngagementParty/img21.jpg",
+        "images/EngagementParty/img22.jpg",
+        "images/EngagementParty/img23.jpg",
+        "images/EngagementParty/img24.jpg",
+        "images/EngagementParty/img25.jpg",
+        "images/EngagementParty/img26.jpg",
+        "images/EngagementParty/img27.jpg",
+        "images/EngagementParty/img28.jpg",
+        "images/EngagementParty/img29.jpg",
+        "images/EngagementParty/img30.jpg",
+        "images/EngagementParty/img31.jpg",
+        "images/EngagementParty/img32.jpg",
+        "images/EngagementParty/img33.jpg",
+        "images/EngagementParty/img34.jpg",
+        "images/EngagementParty/img35.jpg",
+        "images/EngagementParty/img36.jpg",
+        "images/EngagementParty/img37.jpg",
+        "images/EngagementParty/img38.jpg",
+        "images/EngagementParty/img39.jpg",
+        "images/EngagementParty/img40.jpg",
+        "images/EngagementParty/img41.jpg",
+        "images/EngagementParty/img42.jpg",
+        "images/EngagementParty/img43.jpg",
+        "images/EngagementParty/img44.jpg",
+        "images/EngagementParty/img45.jpg",
+        "images/EngagementParty/img46.jpg",
+        "images/EngagementParty/img47.jpg",
+        "images/EngagementParty/img48.jpg",
+        "images/EngagementParty/img49.jpg",
+        "images/EngagementParty/img50.jpg"
+      ];
+      var albumEngagementParty = document.getElementById("albumEngagementParty");
+      var albumEngagementPartyRow = document.getElementById("albumEngagementPartyRow");
+      var index = listImgs.length + 1;
+      listImgs.forEach(element => {
+        index--;
+        var albumEngagementPartyMySlide = document.getElementById("albumEngagementPartyMySlide");
+        if (albumEngagementPartyMySlide) {
+            var albumEngagementPartyMyImg = albumEngagementPartyMySlide.childNodes[1];
+            if (albumEngagementPartyMyImg) {
+                albumEngagementPartyMyImg.src = element;
+            }
+            // EngagementPartyMyImg.setAttribute("imgIndex", index);
+            var clone1 = albumEngagementPartyMySlide.cloneNode(true);
+            albumEngagementParty.prepend(clone1);
+        }
+
+
+        var albumEngagementPartyItem = document.getElementById("albumEngagementPartyItem");
+        if (albumEngagementPartyItem) {
+            var albumEngagementPartyImgItem = albumEngagementPartyItem.childNodes[1];
+            if (albumEngagementPartyImgItem) {
+                albumEngagementPartyImgItem.src = element;
+            }
+            albumEngagementPartyImgItem.setAttribute("imgIndex", index);
+            var clone = albumEngagementPartyItem.cloneNode(true);
+            clone.onclick = function(event) {
+                currentSlideEngagementParty(clone.childNodes[1].getAttribute("imgindex"), clone);
+            }
+            albumEngagementPartyRow.prepend(clone);
+        }
+      });
+      albumEngagementPartyRow.firstElementChild.remove();
+      albumEngagementParty.firstElementChild.remove();
+  }
+        function openImage(obj) {
+            // Lấy phần Modal
+            var modal = document.getElementById('myModal');
+            var modalImg = document.getElementById("img01");
+            modal.style.display = "flex";//"block";
+            modalImg.src = obj.src;
+            // lấy button span có chức năng đóng Modal
+            var span = document.getElementsByClassName("close")[0];
+
+            //Khi button được click, đóng modal
+            span.onclick = function() { 
+                modal.style.display = "none";
+            }
+        }
+        
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n, obj) {
+            // obj.childNodes[1].style.opacity = 1;
+            
+            var albumWeddingImgItem = document.getElementsByClassName("albumWeddingImgItemCls");
+            
+            Array.from(albumWeddingImgItem).forEach(element => {
+                element.classList.remove("img-slider-active");
+                element.classList.add("img-slider-unactive");
+            });
+            
+            obj.childNodes[1].classList.remove("img-slider-unactive");
+            obj.childNodes[1].classList.add("img-slider-active");
+            showSlides(slideIndex = n, "mySlides");
+        }
+        
+        function currentSlideEngagementParty(n, obj) {
+            var albumEngagementPartyImgItemCls = document.getElementsByClassName("albumEngagementPartyImgItemCls");
+            
+            Array.from(albumEngagementPartyImgItemCls).forEach(element => {
+                element.classList.remove("img-slider-active");
+                element.classList.add("img-slider-unactive");
+            });
+            
+            obj.childNodes[1].classList.remove("img-slider-unactive");
+            obj.childNodes[1].classList.add("img-slider-active");
+            showSlides(slideIndex = n, "mySlides1");
+        }
+        
+        function showSlides(n, className) {
+            let i;
+            let slides = document.getElementsByClassName(className);
+            //   let dots = document.getElementsByClassName("demo");
+            //   let captionText = document.getElementById("caption");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            //   for (i = 0; i < dots.length; i++) {
+            //     dots[i].className = dots[i].className.replace(" active", "");
+            //   }
+            slides[slideIndex - 1].style.display = "block";
+            //   dots[slideIndex-1].className += " active";
+            //   if (captionText)
+            //     captionText.innerHTML = dots[slideIndex-1].alt;
+        }
+    </script>
+        
+</body>
+
+</html>
