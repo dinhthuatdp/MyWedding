@@ -453,6 +453,7 @@
 
     .text-content {
         font-size: 14px;
+        max-width: 370px;
     }
 
     .text-title {
