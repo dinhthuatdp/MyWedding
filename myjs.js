@@ -1,11 +1,11 @@
 // Countdown
-var countDownDate = new Date(2022, 09, 07, 11, 00, 00, 0); // Tuong ung 2022/08/12
+var countDownDate = new Date('2022/09/07 11:00:00'); // Tuong ung 2022/08/12
 // Update the count down every 1 second
 var x = setInterval(function() {
 
     // Get today's date and time
     var now = new Date().getTime();
-      
+
     // Find the distance between now and the count down date
     var distance = countDownDate - now;
       
